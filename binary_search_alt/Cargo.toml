@@ -1,6 +1,5 @@
-workspace = { members = ["rust_tcp"] }
 [package]
-name = "rotate_array"
+name = "binary_search_alt"
 version = "0.1.0"
 edition = "2021"
 
