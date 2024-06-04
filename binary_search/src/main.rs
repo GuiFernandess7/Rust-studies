@@ -1,4 +1,4 @@
-use clap::{command, Arg};
+use std::env;
 
 fn binary_search(nums: &Vec<i32>, number: i32) -> Option<i32>{
     // Find number in list
@@ -33,7 +33,7 @@ fn check_if_sorted(nums: &Vec<i32>) -> bool{
 
 fn partition(slice: &mut [i32]) -> usize {
     let len = slice.len();
-    let pivot = slice[len - 1];
+    let mut pivot = slice[len - 1];
     let mut i = 0;
     let mut j = 0;
 
@@ -60,25 +60,30 @@ fn quick_sort(slice: &mut [i32]){
 }
 
 fn main() {
-    let matches = command!().arg(Arg::new("value")).arg(Arg::new("list")).get_matches();
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 3 {
+        println!("Usage: {} <target> <list>", args[0]);
+        return;
+    }
 
-    let value_match = matches.get_one::<String>("value").unwrap();
-    let list_match = matches.get_one::<String>("list").unwrap().split(",");
+    let target_value = args[1].parse::<i32>().expect("Unable to parse value as integer");
+    let list_match: Vec<i32> = args[2]
+        .split(",")
+        .map(|s| s.parse::<i32>().expect("Unable to parse list item as integer"))
+        .collect();
 
-    let target_value: i32 = value_match.parse::<i32>().expect("Unable to parse value as integer");
-    let mut mylist: Vec<i32> = list_match.map(|s| s.parse::<i32>().expect("Unable to parse list item as integer")).collect();
+    let mut mylist = list_match;
 
-    let index  = binary_search(&mylist, target_value);
-    let is_sorted: bool = check_if_sorted(&mylist);
+    let index = binary_search(&mylist, target_value);
+    let is_sorted = check_if_sorted(&mylist);
 
     if !is_sorted {
-        let mut slice_list = mylist.as_mut_slice();
-        quick_sort(&mut slice_list);
+        quick_sort(&mut mylist);
     }
 
-     match index {
-        Some(index) => println!("Number found!: {}", index),
+    match index {
+        Some(index) => println!("Number found at index {}!", index),
         None => println!("Number not found"),
     }
-
+    //let matches = command!().arg(Arg::new("value")).arg(Arg::new("list")).get_matches();
 }
