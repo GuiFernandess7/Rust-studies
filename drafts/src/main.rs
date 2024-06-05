@@ -83,6 +83,7 @@ fn main(){
             println!("{:?}", &arr);
             continue;
         }
+
         else {
             let target: i32 = match input.trim().parse() {
                 Ok(num) => num,
