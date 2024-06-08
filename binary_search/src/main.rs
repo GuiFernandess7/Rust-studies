@@ -60,7 +60,6 @@ fn quick_sort(slice: &mut [i32]){
 }
 
 fn main() {
-    //let matches = command!().arg(Arg::new("value")).arg(Arg::new("list")).get_matches();
     let matches = Command::new("Binary Search")
         .arg(Arg::new("target")
             .short('t')
@@ -90,92 +89,3 @@ fn main() {
     }
 }
 
-/* use std::env;
-
-fn binary_search(nums: &Vec<i32>, number: i32) -> Option<i32>{
-    // Find number in list
-    let mut low: i32 = 0;
-    let mut high: i32 = nums.len().try_into().unwrap();
-
-    while low < high{
-        let middle: i32 = low + (high - low) / 2;
-        let value: i32  = nums[middle as usize];
-
-        if value == number {
-            return Some(number);
-        }
-        else if value > number {
-            high = middle;
-        }
-        else {
-            low = middle + 1;
-        }
-    }
-    None
-}
-
-fn check_if_sorted(nums: &Vec<i32>) -> bool{
-    for n in 0..nums.len() - 1 {
-        if nums[n] > nums[n + 1] {
-            return false;
-        }
-    }
-    true
-}
-
-fn partition(slice: &mut [i32]) -> usize {
-    let len = slice.len();
-    let mut pivot = slice[len - 1];
-    let mut i = 0;
-    let mut j = 0;
-
-    while j < len - 1 {
-        if slice[j] <= pivot {
-            slice.swap(i, j);
-            i += 1;
-        }
-        j += 1;
-    }
-
-    slice.swap(i, len - 1);
-    return i;
-}
-
-fn quick_sort(slice: &mut [i32]){
-    if !slice.is_empty() {
-        let partition_index = partition(slice);
-        let len = slice.len();
-
-        quick_sort(&mut slice[0..partition_index]);
-        quick_sort(&mut slice[partition_index + 1..len])
-    }
-}
-
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 3 {
-        println!("Usage: {} <target> <list>", args[0]);
-        return;
-    }
-
-    let target_value = args[1].parse::<i32>().expect("Unable to parse value as integer");
-    let list_match: Vec<i32> = args[2]
-        .split(",")
-        .map(|s| s.parse::<i32>().expect("Unable to parse list item as integer"))
-        .collect();
-
-    let mut mylist = list_match;
-
-    let index = binary_search(&mylist, target_value);
-    let is_sorted = check_if_sorted(&mylist);
-
-    if !is_sorted {
-        quick_sort(&mut mylist);
-    }
-
-    match index {
-        Some(index) => println!("Number found at index {}!", index),
-        None => println!("Number not found"),
-    }
-}
- */
