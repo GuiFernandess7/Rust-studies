@@ -7,7 +7,7 @@ use std::io::{Write, BufReader, BufRead, ErrorKind};
 use std::fs::File;
 use std::cmp::Ordering;
 
-mod fibonacci;
+//mod fibonacci;
 
 fn main() {
     let arr_2 = [1,2,3,4,5,6,7,8,9,10,15];

@@ -1,0 +1,13 @@
+[package]
+name = "img_exif"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+exif-rs = "0.1.0"
+image = "0.25.1"
+jpeg-decoder = "0.3.1"
+kamadak-exif = "0.5.5"
+little_exif = "0.3.2"
